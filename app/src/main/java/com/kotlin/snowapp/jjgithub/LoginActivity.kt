@@ -38,6 +38,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        email.setText(Settings.email)
+        password.setText(Settings.password)
+
         // Set up the login form.
         populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
@@ -95,6 +99,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * errors are presented and no actual login attempt is made.
      */
     private fun attemptLogin() {
+
+        Settings.email = email.text.toString()
+        Settings.password = password.text.toString()
+
         if (mAuthTask != null) {
             return
         }
